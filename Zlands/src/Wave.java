@@ -4,7 +4,7 @@ import java.util.List;
 public class Wave {
 
 
-	public static int nbWave = 2;
+	public static int nbWave = 1;
 	List<Mob> listMobs = new ArrayList<Mob>();
 
 

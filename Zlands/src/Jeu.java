@@ -14,20 +14,12 @@ public class Jeu {
 
 	public void playGame () {
 		
-		int gameRun = 0;
-
 		while (!endGame()) {
 			
 			System.out.println("");
 			System.out.println("--- Nouvelle boucle ---");
 			System.out.println("");
-			launchCheckForNextWave();
 
-//			if (gameRun%10==0&&gameRun!=0) {
-//				System.out.println("in");
-//				base.setLaser(new Laser());
-//				xLaser=0;
-//			}
 
 			checkPointerNullLaser();
 			if (base.getLaser()!=null) {
@@ -35,7 +27,7 @@ public class Jeu {
 				System.out.println("x laser = "+ base.getLaser().getXLaser());
 			}
 
-
+			
 			
 			if (wave.getListMobs().get(0).getXMob() > 0 ) {
 				wave.getListMobs().get(0).setXMob(wave.getListMobs().get(0).getXMob()-1);
@@ -46,9 +38,9 @@ public class Jeu {
 			checkContactLaser();
 			checkContactBase();
 			wave.checkMobsKilled();
+			
+			launchCheckForNextWave();
 
-			gameRun++;
-			System.out.println("gR = "+gameRun);
 		}
 
 	}
@@ -56,7 +48,7 @@ public class Jeu {
 
 
 	public boolean endGame() {
-		if (currentWave==Wave.nbWave) {
+		if (currentWave==Wave.nbWave && wave.waveFinish()) {
 			System.out.println("Bravo ! Vous avez fini le jeu !");
 			return true;
 		}else if(base.getHPBase()<=0){
