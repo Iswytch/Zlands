@@ -39,7 +39,6 @@ public class Wave {
 	public void checkMobsKilled () {
 		for (int i = 0; i < listMobs.size(); i++) {
 			if (listMobs.get(i).getNbHPMob() <= 0 ) {
-				System.out.println("remove mob");
 				listMobs.remove(i);
 			}
 		}

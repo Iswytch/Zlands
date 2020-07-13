@@ -13,12 +13,11 @@ public class Jeu {
 
 
 	public void playGame () {
-		int xLaser = base.getLaser().getXLaser();
-		int xMob = wave.getListMobs().get(0).getXMob();
+		
 		int gameRun = 0;
 
 		while (!endGame()) {
-
+			
 			System.out.println("");
 			System.out.println("--- Nouvelle boucle ---");
 			System.out.println("");
@@ -32,18 +31,17 @@ public class Jeu {
 
 			checkPointerNullLaser();
 			if (base.getLaser()!=null) {
-				xLaser++;
-				base.getLaser().setXLaser(xLaser);
-				System.out.println("x laser = "+ xLaser);
+				base.getLaser().setXLaser(base.getLaser().getXLaser()+1);
+				System.out.println("x laser = "+ base.getLaser().getXLaser());
 			}
 
 
+			
 			if (wave.getListMobs().get(0).getXMob() > 0 ) {
-				xMob--;
+				wave.getListMobs().get(0).setXMob(wave.getListMobs().get(0).getXMob()-1);
+				System.out.println("x mob = "+ wave.getListMobs().get(0).getXMob());
 			}
-			wave.getListMobs().get(0).setXMob(xMob);
-			System.out.println("x mob = "+ xMob);
-
+			
 
 			checkContactLaser();
 			checkContactBase();
@@ -94,7 +92,6 @@ public class Jeu {
 
 	public void checkPointerNullLaser () {
 		if (base.getLaser() != null ) {
-			System.out.println("debug"+wave.getListMobs());
 			if (base.getLaser().getXLaser() >= wave.getListMobs().get(0).getXMob()) {
 				base.setLaser(null);
 			}
