@@ -1,11 +1,10 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 public class Wave {
 
 
-	public static int nbWave = 1;
-	List<Mob> listMobs = new ArrayList<Mob>();
+	public static int nbWave = 2;
+	LinkedList<Mob> listMobs = new LinkedList<Mob>();
 
 
 	public Wave(int currentWave) {
@@ -13,35 +12,39 @@ public class Wave {
 		System.out.println("cW = "+currentWave);
 		switch(currentWave) {
 		case 0:
-			listMobs.add(new MobsNiv1());
-			System.out.println("mob add : 1 " + listMobs);
+			listMobs.offer(new MobsNiv1());
+			System.out.println("mob add : wave 1 " + listMobs);
 			break;
 		case 1:
-			listMobs.add(new MobsNiv1());
-			listMobs.add(new MobsNiv1());
-			System.out.println("mob add : 2 " + listMobs);
+			listMobs.offer(new MobsNiv1());
+			
+			//TODO better way to spawn another mob
+			listMobs.offer(new MobsNiv1());
+			listMobs.getLast().setXMob(listMobs.getLast().getXMob()+listMobs.size()-1);
+			
+			listMobs.offer(new MobsNiv1());
+			listMobs.getLast().setXMob(listMobs.getLast().getXMob()+listMobs.size()-1);
+			System.out.println("mob add : wave 2 " + listMobs);
 			break;
 		}
 
 	}
 
 
-	public List<Mob> getListMobs() {
+	public LinkedList<Mob> getListMobs() {
 		return listMobs;
 	}
 
 
-	public void setListMobs(List<Mob> listMobs) {
+	public void setListMobs (LinkedList<Mob> listMobs) {
 		this.listMobs = listMobs;
 	}
 
 
 	public void checkMobsKilled () {
-		for (int i = 0; i < listMobs.size(); i++) {
-			if (listMobs.get(i).getNbHPMob() <= 0 ) {
-				listMobs.remove(i);
+			if (listMobs.element().getNbHPMob() <= 0 ) {
+				listMobs.poll();
 			}
-		}
 	}
 
 	public boolean waveFinish () {

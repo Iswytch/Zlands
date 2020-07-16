@@ -17,7 +17,7 @@ public class Jeu {
 		while (!endGame()) {
 			
 			System.out.println("");
-			System.out.println("--- Nouvelle boucle ---");
+			System.out.println("--- [ Nouvelle boucle ] ---");
 			System.out.println("");
 
 
@@ -29,9 +29,13 @@ public class Jeu {
 
 			
 			
-			if (wave.getListMobs().get(0).getXMob() > 0 ) {
-				wave.getListMobs().get(0).setXMob(wave.getListMobs().get(0).getXMob()-1);
-				System.out.println("x mob = "+ wave.getListMobs().get(0).getXMob());
+			if (wave.getListMobs().element().getXMob() > 0 ) {
+				for (int i = 0; i < wave.listMobs.size(); i++) {
+					wave.getListMobs().get(i).setXMob(wave.getListMobs().get(i).getXMob()-1);
+					if(wave.getListMobs().get(i).getXMob()<=10) {
+						System.out.println("x mob = "+ wave.getListMobs().get(i).getXMob());
+					}
+				}
 			}
 			
 
@@ -42,7 +46,6 @@ public class Jeu {
 			launchCheckForNextWave();
 
 		}
-
 	}
 
 
@@ -52,7 +55,8 @@ public class Jeu {
 			System.out.println("Bravo ! Vous avez fini le jeu !");
 			return true;
 		}else if(base.getHPBase()<=0){
-			System.out.println("Game Over");
+			System.out.println("");
+			System.out.println("GAME OVER");
 			return true;
 		}else {
 			return false;
@@ -74,9 +78,9 @@ public class Jeu {
 
 	public void checkContactLaser () {
 		if (base.getLaser()!=null) { 
-			if (base.getLaser().getXLaser() == wave.getListMobs().get(0).getXMob()) {
-				wave.getListMobs().get(0).setNbHPMob ( wave.getListMobs().get(0).getNbHPMob() - base.getLaser().getDegat() );
-				System.out.println("hp mob = "+  wave.getListMobs().get(0).getNbHPMob());
+			if (base.getLaser().getXLaser() >= wave.getListMobs().element().getXMob()) {
+				wave.getListMobs().element().setNbHPMob ( wave.getListMobs().element().getNbHPMob() - base.getLaser().getDegat() );
+				System.out.println("hp mob = "+  wave.getListMobs().element().getNbHPMob());
 			}
 		}
 	}
@@ -84,7 +88,7 @@ public class Jeu {
 
 	public void checkPointerNullLaser () {
 		if (base.getLaser() != null ) {
-			if (base.getLaser().getXLaser() >= wave.getListMobs().get(0).getXMob()) {
+			if (base.getLaser().getXLaser() >= wave.getListMobs().element().getXMob()) {
 				base.setLaser(null);
 			}
 		}
@@ -92,12 +96,11 @@ public class Jeu {
 
 
 	public void checkContactBase () {
-		if (wave.getListMobs().get(0).getXMob()== 0) {
-			base.setHPBase ( base.getHPBase() - wave.getListMobs().get(0).getDegatMob() );
+		if (wave.getListMobs().element().getXMob()== 0) {
+			base.setHPBase ( base.getHPBase() - wave.getListMobs().element().getDegatMob() );
 			System.out.println("hp base : "+ base.getHPBase());
 		}
 	}
-
 
 
 
