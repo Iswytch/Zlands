@@ -37,7 +37,7 @@ public class Panneau extends JPanel {
 	public void paintComponent(Graphics g){
 		try {
 			
-			Image stickman = ImageIO.read(new File("stickman.png"));
+			Image stickman = ImageIO.read(new File("julesv2.jpg"));
 			Image fond = ImageIO.read(new File("fond.png"));
 			Image base = ImageIO.read(new File("base.png"));
 

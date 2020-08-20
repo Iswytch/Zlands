@@ -22,9 +22,13 @@ public class Jeu {
 
 
 			checkPointerNullLaser();
-			if (base.getLaser()!=null) {
-				base.getLaser().setXLaser(base.getLaser().getXLaser()+1);
-				System.out.println("x laser = "+ base.getLaser().getXLaser());
+			if (base.getLaser().getLast()!=null) {
+				System.out.println("test"+base.getLaser());
+			}
+			System.out.println("test"+base.getLaser());
+			if (base.getLaser().getLast()!=null) {
+				base.getLaser().getLast().setXLaser(base.getLaser().getLast().getXLaser()+1);
+				System.out.println("x laser = "+ base.getLaser().getLast().getXLaser());
 			}
 
 			
@@ -71,6 +75,7 @@ public class Jeu {
 			System.out.println("Nouvelle vague");
 			currentWave++;
 			this.wave = new Wave(currentWave);
+			this.base = new Base();
 		}
 
 	}
@@ -78,8 +83,9 @@ public class Jeu {
 
 	public void checkContactLaser () {
 		if (base.getLaser()!=null) { 
-			if (base.getLaser().getXLaser() >= wave.getListMobs().element().getXMob()) {
-				wave.getListMobs().element().setNbHPMob ( wave.getListMobs().element().getNbHPMob() - base.getLaser().getDegat() );
+			if (base.getLaser().getLast().getXLaser() >= wave.getListMobs().element().getXMob()) {
+				wave.getListMobs().element().setNbHPMob ( wave.getListMobs().element().getNbHPMob() - base.getLaser().getLast().getDegat() );
+				base.getLaser().poll();
 				System.out.println("hp mob = "+  wave.getListMobs().element().getNbHPMob());
 			}
 		}
@@ -88,7 +94,7 @@ public class Jeu {
 
 	public void checkPointerNullLaser () {
 		if (base.getLaser() != null ) {
-			if (base.getLaser().getXLaser() >= wave.getListMobs().element().getXMob()) {
+			if (base.getLaser().getLast().getXLaser() >= wave.getListMobs().element().getXMob()) {
 				base.setLaser(null);
 			}
 		}

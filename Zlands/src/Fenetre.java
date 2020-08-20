@@ -30,9 +30,7 @@ public class Fenetre extends JFrame {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-
 		}
-
 	}
 
 }

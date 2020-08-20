@@ -1,32 +1,25 @@
+import java.util.LinkedList;
 
 public class Base {
 
 	private int HP;
-	private Laser laser;
+	LinkedList<Laser> laser = new LinkedList<Laser>();
 
 
 	//BASE PAS UPGRADABLE TODO
 	public Base() {
 		this.HP = 20;
-		this.laser = new Laser();
-		//		for (int i = 0; i < 5; i++) {
-		//			this.laser = new Laser();
-		//			try {
-		//				Thread.sleep(1);
-		//			} catch (InterruptedException e) {
-		//				e.printStackTrace();
-		//			}
-		//		}
+		laser.offer(new Laser());
 
 	}
 
 
-	public Laser getLaser() {
+	public LinkedList<Laser> getLaser() {
 		return laser;
 	}
 
 
-	public void setLaser(Laser laser) {
+	public void setLaser(LinkedList<Laser> laser) {
 		this.laser = laser;
 	}
 
@@ -41,8 +34,4 @@ public class Base {
 	}
 	
 	
-	public void generateLaser() {
-		this.laser = new Laser() ;
-	}
-
 }
